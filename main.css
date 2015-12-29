@@ -1,0 +1,27 @@
+#tex-result-wrapper{
+	margin:5px;
+}
+#tex-result{
+	display:inline-block;
+}
+.keyboard-row{
+	overflow: hidden;
+	min-height:20px;
+	border-radius:5px;
+	background-color:#EEE;
+}.keyboard-key{
+	min-width:32px;
+	display:inline-block;
+	margin:2px;
+	border:1px solid black;
+	border-radius:7px;
+	padding:7px;
+	background-color:#DDD;
+	min-height:20px;
+	text-align:center;
+	overflow: hidden;
+}
+#tex-text{
+	width:100%;
+	min-height: 50px;
+}
