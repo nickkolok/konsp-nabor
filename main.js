@@ -40,6 +40,7 @@ function makeKeyboardSortable(){
 		disable: true,
 		connectWith: '.keyboard-row',
 	});
+	updateSaveButton();
 }
 
 $(function() {
@@ -107,6 +108,18 @@ function addKeyboardKey(){
 	lastRow.append(newKey);
 	makeKeyboardSortable();
 	MathJax.Hub.Typeset(newKey[0]);
+}
+
+function updateSaveButton(){
+	var blob = new Blob([JSON.stringify(getKeyboardSet()).replace(/\],\[/g,"],\r\n[")], {
+		type: "text/plain;charset=utf-8"
+	});
+	var a = document.createElement('a');
+	a.download = "saved.keyboard.json";
+	a.href = URL.createObjectURL(blob);
+	a.innerHTML = "<button>Сохранить клавиатуру в файл</button>";
+	document.getElementById('span-save').innerHTML='';
+	document.getElementById('span-save').appendChild(a);
 }
 
 function onUnload(){
