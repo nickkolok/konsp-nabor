@@ -133,3 +133,17 @@ HTMLTextAreaElement.prototype.replaceSelectionWith = function(str){
 	this.selectionStart = this.selectionEnd = selectionStart + str.length;
 }
 Object.defineProperty(HTMLTextAreaElement.prototype, 'replaceSelectionWith', {enumerable: false});
+
+//{{ Блок работы с картинкой-образцом
+function scaleImagePlus(){
+	$('#template-image')[0].width*=1.1;
+}
+
+function scaleImageMinus(){
+	$('#template-image')[0].width/=1.1;
+}
+
+function updateImage(){
+	$('#template-image')[0].src=$('#image-url').val();
+}
+//}}

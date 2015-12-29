@@ -18,6 +18,18 @@
 		<button onclick="render();">$\TeX$</button>
 		<div id="tex-result"></div>
 	</div>
+	<div id="image-wrapper">
+		<div id="image-controls">
+			URL:
+			<input id="image-url"/>
+			<button onclick="updateImage();">Загрузить</button>
+			<button onclick="scaleImagePlus();" >+</button>
+			<button onclick="scaleImageMinus();">-</button>
+		</div>
+		<div id="image-resizable-container">
+			<img id="template-image" width="200"/>
+		</div>
+	</div>
 	<textarea id="tex-text">
 	</textarea>
 	<div id="keyboard-container" class="row-container">
