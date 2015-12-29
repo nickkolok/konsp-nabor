@@ -15,7 +15,7 @@ function createKeyboardSet(keyset){
 		var targetRow=$('<div class="keyboard-row"></div>');
 		for(var key=0; key<keyset[row].length; key++){
 			var targetKey=$(
-				'<span data-texcode="'+keyset[row][key][1]+'">'+keyset[row][key][0]+'</span>'
+				'<span class="keyboard-key" data-texcode="'+keyset[row][key][1]+'">'+keyset[row][key][0]+'</span>'
 			);
 			targetKey[0].onclick=generateClickHandler(keyset[row][key][1]);
 			targetRow.append(targetKey);

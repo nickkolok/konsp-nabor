@@ -19,7 +19,7 @@ MathJax.Hub.Config({
 </div>
 <script src="main.js"></script>
 <style>
-.keyboard-row > span{
+.keyboard-key{
 	min-width:32px;
 	display:inline-block;
 	margin:2px;
@@ -27,11 +27,19 @@ MathJax.Hub.Config({
 	border-radius:7px;
 	padding:7px;
 	background-color:#DDD;
+	min-height:20px;
+	text-align:center;
+	overflow: hidden;
 }
 .keyboard-row{
+	overflow: hidden;
 	min-height:20px;
 	border-radius:5px;
 	background-color:#EEE;
+}
+#tex-text{
+	width:100%;
+	min-height: 50px;
 }
 </style>
 </body>
