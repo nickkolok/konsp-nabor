@@ -13,12 +13,22 @@ MathJax.Hub.Config({
 <script type="text/javascript"
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
+<div id="tex-result-wrapper">
+	<button onclick="render();">$\TeX$</button>
+	<div id="tex-result"></div>
+</div>
 <textarea id="tex-text">
 </textarea>
 <div id="keyboard-container">
 </div>
 <script src="main.js"></script>
 <style>
+#tex-result-wrapper{
+	margin:5px;
+}
+#tex-result{
+	display:inline-block;
+}
 .keyboard-key{
 	min-width:32px;
 	display:inline-block;

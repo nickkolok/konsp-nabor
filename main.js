@@ -32,6 +32,7 @@ $(function() {
 		disable: true,
 		connectWith: '.keyboard-row',
 	});
+	MathJax.Hub.Typeset("tex-result-wrapper");
 });
 
 function generateClickHandler(texcode){
@@ -42,6 +43,11 @@ function generateClickHandler(texcode){
 
 function keyClicked(texcode){
 	$('#tex-text')[0].replaceSelectionWith(texcode);
+}
+
+function render(){
+	$("#tex-result").text($('#tex-text').val());
+	MathJax.Hub.Typeset("tex-result");
 }
 
 HTMLTextAreaElement.prototype.replaceSelectionWith = function(str){
