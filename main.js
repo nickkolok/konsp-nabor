@@ -28,13 +28,17 @@ function createKeyboardSet(keyset){
 	MathJax.Hub.Typeset('keyboard-container');
 }
 
-$(function() {
-	loadKeyboardSetFromLocalStorage();
+function makeKeyboardSortable(){
 	$( "#keyboard-container" ).sortable({ disable: true });
 	$( ".keyboard-row" ).sortable({
 		disable: true,
 		connectWith: '.keyboard-row',
 	});
+}
+
+$(function() {
+	loadKeyboardSetFromLocalStorage();
+	makeKeyboardSortable();
 	MathJax.Hub.Typeset("tex-result-wrapper");
 });
 
@@ -84,6 +88,11 @@ function loadKeyboardSetFromLocalStorage(){
 		storedKeyboardSet = defaultKeyboardSet;
 	}
 	createKeyboardSet(storedKeyboardSet);
+}
+
+function addKeyboardRow(){
+	$('#keyboard-container').append($('<div class="keyboard-row"></div>'));
+	makeKeyboardSortable();
 }
 
 function onUnload(){
