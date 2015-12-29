@@ -1,4 +1,4 @@
-var keyboardSet=[
+var defaultKeyboardSet=[
 	[
 		['\\frac','\\frac{}{}'],
 		['A','A'],
@@ -7,6 +7,7 @@ var keyboardSet=[
 		['$\\in$','\\in'],
 	],
 ];
+//TODO: сделать хоть сколь-нибудь осмысленным
 
 
 function createKeyboardSet(keyset){
@@ -15,7 +16,9 @@ function createKeyboardSet(keyset){
 		var targetRow=$('<div class="keyboard-row"></div>');
 		for(var key=0; key<keyset[row].length; key++){
 			var targetKey=$(
-				'<span class="keyboard-key" data-texcode="'+keyset[row][key][1]+'">'+keyset[row][key][0]+'</span>'
+				'<span class="keyboard-key" data-texcode="'+
+					keyset[row][key][1]+'" data-htmlcode="'+
+					keyset[row][key][0]+'">'+keyset[row][key][0]+'</span>'
 			);
 			targetKey[0].onclick=generateClickHandler(keyset[row][key][1]);
 			targetRow.append(targetKey);
@@ -26,7 +29,7 @@ function createKeyboardSet(keyset){
 }
 
 $(function() {
-	createKeyboardSet(keyboardSet);
+	loadKeyboardSetFromLocalStorage();
 	$( "#keyboard-container" ).sortable({ disable: true });
 	$( ".keyboard-row" ).sortable({
 		disable: true,
@@ -48,6 +51,43 @@ function keyClicked(texcode){
 function render(){
 	$("#tex-result").text($('#tex-text').val());
 	MathJax.Hub.Typeset("tex-result");
+}
+
+function getKeyboardSet(){
+	var keyset=[];
+	var rows=$('.keyboard-row');
+	for(var row=0; row<rows.length; row++){
+		keyset[row]=[];
+		var keys=rows[row].getElementsByClassName('keyboard-key');//TODO: переписать на jQuery
+		for(var key=0; key<keys.length; key++){
+			keyset[row][key]=[
+				keys[key].getAttribute('data-htmlcode'),
+				keys[key].getAttribute('data-texcode')
+			];
+		}
+	}
+	return keyset;
+}
+
+function saveKeyboardSetToLocalStorage(){
+	localStorage['texkeyboard-keyset']=JSON.stringify(getKeyboardSet());
+}
+
+function loadKeyboardSetFromLocalStorage(){
+	var storedKeyboardSet;
+	try{
+		storedKeyboardSet=JSON.parse(localStorage['texkeyboard-keyset']);
+		console.log(storedKeyboardSet);
+		if(!storedKeyboardSet || storedKeyboardSet.length==0)
+			storedKeyboardSet = defaultKeyboardSet;
+	}catch(e){
+		storedKeyboardSet = defaultKeyboardSet;
+	}
+	createKeyboardSet(storedKeyboardSet);
+}
+
+function onUnload(){
+	saveKeyboardSetToLocalStorage();
 }
 
 HTMLTextAreaElement.prototype.replaceSelectionWith = function(str){
