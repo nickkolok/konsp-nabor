@@ -40,5 +40,13 @@ function generateClickHandler(texcode){
 }
 
 function keyClicked(texcode){
-	$('#tex-text')[0].value+=texcode;
+	$('#tex-text')[0].replaceSelectionWith(texcode);
 }
+
+HTMLTextAreaElement.prototype.replaceSelectionWith = function(str){
+	var value = this.value;
+	var selectionStart = this.selectionStart;
+	this.value = value.substr(0,this.selectionStart)+str+value.substr(this.selectionEnd);
+	this.selectionStart = this.selectionEnd = selectionStart + str.length;
+}
+Object.defineProperty(HTMLTextAreaElement.prototype, 'replaceSelectionWith', {enumerable: false});
