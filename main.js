@@ -21,11 +21,12 @@ function createKeyboardSet(keyset){
 			targetRow.append(targetKey);
 		}
 		targetElement.append(targetRow);
-	} 
+	}
+	MathJax.Hub.Typeset('keyboard-container');
 }
-createKeyboardSet(keyboardSet);
 
 $(function() {
+	createKeyboardSet(keyboardSet);
 	$( "#keyboard-container" ).sortable({ disable: true });
 	$( ".keyboard-row" ).sortable({
 		disable: true,
