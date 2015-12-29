@@ -32,7 +32,10 @@ function createKeyboardSet(keyset){
 }
 
 function makeKeyboardSortable(){
-	$( "#keyboard-container" ).sortable({ disable: true });
+	$( ".row-container" ).sortable({
+		disable: true,
+		connectWith: '.row-container',
+	});
 	$( ".keyboard-row" ).sortable({
 		disable: true,
 		connectWith: '.keyboard-row',
@@ -62,7 +65,7 @@ function render(){
 
 function getKeyboardSet(){
 	var keyset=[];
-	var rows=$('.keyboard-row');
+	var rows=$('#keyboard-container .keyboard-row');
 	for(var row=0; row<rows.length; row++){
 		keyset[row]=[];
 		var keys=rows[row].getElementsByClassName('keyboard-key');//TODO: переписать на jQuery

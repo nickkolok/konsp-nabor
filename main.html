@@ -20,7 +20,7 @@
 	</div>
 	<textarea id="tex-text">
 	</textarea>
-	<div id="keyboard-container">
+	<div id="keyboard-container" class="row-container">
 	</div>
 	<div id="addKeysOrRows">
 		Внешний вид:
@@ -30,6 +30,12 @@
 		<button onclick="addKeyboardKey();">Добавить клавишу</button>
 		|
 		<button onclick="addKeyboardRow();">Добавить ряд</button>
+		<br/>
+		Корзина (очищается при обновлении страницы)
+		<div id="trash" class="row-container">
+			<div id="key-trash" class="keyboard-row">
+			</div>
+		</div>
 	</div>
 	<script src="main.js"></script>
 </body>
