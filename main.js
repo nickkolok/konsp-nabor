@@ -9,6 +9,8 @@ var defaultKeyboardSet=[
 ];
 //TODO: сделать хоть сколь-нибудь осмысленным
 
+var aceEditor;
+
 function createKeyboardKey(props){
 	var targetKey=$(
 			'<span class="keyboard-key" data-texcode="'+
@@ -48,6 +50,13 @@ $(function() {
 	makeKeyboardSortable();
 	MathJax.Hub.Typeset("tex-result-wrapper");
 	chasStorage.domData.load();
+	$('#tex-ace').html(localStorage['tex-text-in-editor']);
+	$("#tex-ace")[0].style.position="relative";
+	$("#tex-ace")[0].style.height=16*15+"px";
+	$("#tex-ace")[0].style.textAlign="left";
+	aceEditor = ace.edit("tex-ace");
+	aceEditor.getSession().setMode("ace/mode/latex");
+	aceEditor.setFontSize(16);
 });
 
 function generateClickHandler(texcode){
@@ -57,11 +66,11 @@ function generateClickHandler(texcode){
 }
 
 function keyClicked(texcode){
-	$('#tex-text')[0].replaceSelectionWith(texcode);
+	aceEditor.insert(texcode);
 }
 
 function render(){
-	$("#tex-result").text($('#tex-text').val());
+	$("#tex-result").text(aceEditor.getValue());
 	MathJax.Hub.Typeset("tex-result");
 }
 
@@ -125,16 +134,9 @@ function updateSaveButton(){
 
 function onUnload(){
 	saveKeyboardSetToLocalStorage();
+	localStorage['tex-text-in-editor']=aceEditor.getValue();
 	chasStorage.domData.save();
 }
-
-HTMLTextAreaElement.prototype.replaceSelectionWith = function(str){
-	var value = this.value;
-	var selectionStart = this.selectionStart;
-	this.value = value.substr(0,this.selectionStart)+str+value.substr(this.selectionEnd);
-	this.selectionStart = this.selectionEnd = selectionStart + str.length;
-}
-Object.defineProperty(HTMLTextAreaElement.prototype, 'replaceSelectionWith', {enumerable: false});
 
 //{{ Блок работы с картинкой-образцом
 function scaleImagePlus(){

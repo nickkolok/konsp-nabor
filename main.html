@@ -15,6 +15,8 @@
 	<script type="text/javascript"
 		src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 	</script>
+	<script src="ext/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src="ext/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 	<div id="tex-result-wrapper">
 		<button onclick="render();">$\TeX$</button>
 		<div id="tex-result"></div>
@@ -31,8 +33,11 @@
 			<img id="template-image" width="200"/>
 		</div>
 	</div>
-	<textarea id="tex-text" data-chasstorage-id="tex-text" data-chasstorage-conf="value">
-	</textarea>
+	<div id="ace-wrapper">
+		<div id="tex-ace">
+			123
+		</div>
+	</div>
 	<div id="keyboard-container" class="row-container">
 	</div>
 	<div id="addKeysOrRows">

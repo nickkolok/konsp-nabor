@@ -38,7 +38,7 @@
 	text-align:center;
 	overflow: hidden;
 }
-#tex-text{
+#ace-wrapper{
 	width:100%;
 	min-height: 50px;
 }
