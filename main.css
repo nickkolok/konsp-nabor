@@ -8,7 +8,7 @@
 }
 #image-wrapper{
 	display: inline-block;
-	width: 100px;
+	width: 350px;
 }
 #image-resizable-container{
 	resize: both;

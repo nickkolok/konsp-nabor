@@ -47,6 +47,7 @@ $(function() {
 	loadKeyboardSetFromLocalStorage();
 	makeKeyboardSortable();
 	MathJax.Hub.Typeset("tex-result-wrapper");
+	chasStorage.domData.load();
 });
 
 function generateClickHandler(texcode){
@@ -124,6 +125,7 @@ function updateSaveButton(){
 
 function onUnload(){
 	saveKeyboardSetToLocalStorage();
+	chasStorage.domData.save();
 }
 
 HTMLTextAreaElement.prototype.replaceSelectionWith = function(str){

@@ -4,6 +4,7 @@
 	<script src="ext/jquery.min.js"></script>
 	<script src="ext/jquery-ui/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="main.css"/>
+	<script src="ext/chasStorage.js"></script>
 </head>
 <body onunload="onUnload();">
 	<script type="text/x-mathjax-config">
@@ -21,16 +22,16 @@
 	<div id="image-wrapper">
 		<div id="image-controls">
 			URL:
-			<input id="image-url"/>
+			<input id="image-url" data-chasstorage-id="image-url" data-chasstorage-conf="value"/>
 			<button onclick="updateImage();">Загрузить</button>
 			<button onclick="scaleImagePlus();" >+</button>
 			<button onclick="scaleImageMinus();">-</button>
 		</div>
-		<div id="image-resizable-container">
+		<div id="image-resizable-container" data-chasstorage-id="image-resizable-container" data-chasstorage-conf="innerHTML">
 			<img id="template-image" width="200"/>
 		</div>
 	</div>
-	<textarea id="tex-text">
+	<textarea id="tex-text" data-chasstorage-id="tex-text" data-chasstorage-conf="value">
 	</textarea>
 	<div id="keyboard-container" class="row-container">
 	</div>
